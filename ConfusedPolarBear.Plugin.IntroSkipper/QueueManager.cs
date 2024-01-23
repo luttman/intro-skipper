@@ -71,7 +71,10 @@ public class QueueManager
 
             try
             {
-                QueueLibraryContents(folder.ItemId);
+                foreach (var location in folder.Locations)
+                {
+                    QueueLibraryContents(_libraryManager.FindByPath(location, true).Id);
+                }
             }
             catch (Exception ex)
             {
@@ -126,14 +129,14 @@ public class QueueManager
         }
     }
 
-    private void QueueLibraryContents(string rawId)
+    private void QueueLibraryContents(Guid id)
     {
         _logger.LogDebug("Constructing anonymous internal query");
 
         var query = new InternalItemsQuery()
         {
             // Order by series name, season, and then episode number so that status updates are logged in order
-            ParentId = Guid.Parse(rawId),
+            ParentId = id,
             OrderBy = new[]
             {
                 ("SeriesSortName", SortOrder.Ascending),
