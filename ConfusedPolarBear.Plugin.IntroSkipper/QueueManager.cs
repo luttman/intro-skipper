@@ -65,9 +65,8 @@ public class QueueManager
             }
 
             _logger.LogInformation(
-                "Running enqueue of items in library {Name} ({ItemId})",
-                folder.Name,
-                folder.ItemId);
+                "Running enqueue of items in library {Name}",
+                folder.Name);
 
             try
             {
