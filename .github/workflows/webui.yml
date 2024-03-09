@@ -1,4 +1,4 @@
-name: Create Jellyfim-web artifact
+name: Create Jellyfin-web artifact
 
 on:
   release:
